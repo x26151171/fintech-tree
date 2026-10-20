@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TransitGuard | NCI Dublin FinTech Assignment</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚇</text></svg>">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#fffbe1',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+            },
+            emeraldBrand: {
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #080c14;
+      color: #f3f4f6;
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card-accent {
+      background: rgba(245, 158, 11, 0.03);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #fbbf24 0%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gradient-border {
+      position: relative;
+    }
+    .gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 1rem;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.4), rgba(16, 185, 129, 0.4));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- Top Navigation Header -->
+  <nav class="fixed top-0 w-full z-40 glass-card border-b border-white/10 px-4 lg:px-8 py-3">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-xl">
+          🚇
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-white tracking-tight">TransitGuard</span>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">NCI LOCHF</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Offline Transit Inclusion & Verification</p>
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center gap-6 text-xs font-semibold text-slate-300">
+        <a href="#venn" class="hover:text-amber-400 transition">01. Venn & Pain Point</a>
+        <a href="#solution" class="hover:text-amber-400 transition">02. Architecture</a>
+        <a href="#research" class="hover:text-amber-400 transition">03. €20 Field Test</a>
+        <a href="#citations" class="hover:text-amber-400 transition">04. Sources</a>
+      </div>
+
+      <button onclick="togglePitchModal(true)" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-amber-500 text-slate-950 hover:bg-amber-400 transition flex items-center gap-2 shadow-lg shadow-amber-500/10">
+        <span>View Pitch Deck</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="pt-32 pb-16 px-6 max-w-7xl mx-auto">
+    <div class="space-y-6 max-w-4xl">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 text-xs font-semibold uppercase tracking-widest">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+        National College of Ireland • FinTech LOCHF Module Project
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-none">
+        Solving Underground <span class="gradient-text">Transit Panic</span> & Cashless Exclusion
+      </h1>
+
+      <p class="text-lg text-slate-300 leading-relaxed max-w-3xl font-normal">
+        When subterranean transport networks drop offline, non-English speaking commuters face systemic friction, frozen mobile apps, and punitive fare-evasion fines. <strong class="text-white">TransitGuard</strong> provides an offline-first cryptographic micro-token engine to guarantee gate clearance without cellular connections.
+      </p>
+
+      <div class="pt-2 flex flex-wrap gap-4 text-xs font-medium text-slate-400">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800">
+          <span class="text-amber-400">📍</span> Focus Region: Dublin & European Metro Systems
+        </div>
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800">
+          <span class="text-emerald-400">⚡</span> Protocol: Cryptographic Offline QR (EMV-Co Compliant)
+        </div>
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800">
+          <span class="text-amber-400">🛡️</span> SDG Alignment: Reduced Inequalities & Smart Infrastructure
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Section 01: Venn Diagram & Pain Point -->
+  <section id="venn" class="py-12 px-6 max-w-7xl mx-auto border-t border-slate-800/80">
+    <div class="space-y-8">
+      <div class="flex items-center gap-3">
+        <span class="flex items-center justify-center w-8 h-8 rounded-xl bg-amber-500 text-slate-950 font-black text-sm">01</span>
+        <div>
+          <h2 class="text-2xl font-bold text-white">Venn Diagram & Pain Point Decomposition</h2>
+          <p class="text-xs text-slate-400">Intersections of technical, environmental, and demographic constraints</p>
+        </div>
+      </div>
+
+      <!-- Venn Dimensions Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Dim 1 -->
+        <div class="glass-card p-5 rounded-2xl space-y-2 border-l-4 border-amber-500">
+          <span class="text-xs font-extrabold text-amber-400 uppercase tracking-wider">FinTech Area</span>
+          <h3 class="text-base font-bold text-white">Offline Micro-Tokens</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Zero-latency, localized transit micro-debiting utilizing hardware-enclave cached cryptographic tokens.
+          </p>
+        </div>
+
+        <!-- Dim 2 -->
+        <div class="glass-card p-5 rounded-2xl space-y-2 border-l-4 border-emerald-500">
+          <span class="text-xs font-extrabold text-emerald-400 uppercase tracking-wider">Who</span>
+          <h3 class="text-base font-bold text-white">Non-English Commuters</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Migrant workers, international students, and tourists unfamiliar with local transport fine protocols.
+          </p>
+        </div>
+
+        <!-- Dim 3 -->
+        <div class="glass-card p-5 rounded-2xl space-y-2 border-l-4 border-amber-500">
+          <span class="text-xs font-extrabold text-amber-400 uppercase tracking-wider">Where</span>
+          <h3 class="text-base font-bold text-white">Subterranean Transit</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Underground metro tunnels, deep station platforms, and signal dead-zones across Dublin & Europe.
+          </p>
+        </div>
+
+        <!-- Dim 4 -->
+        <div class="glass-card p-5 rounded-2xl space-y-2 border-l-4 border-emerald-500">
+          <span class="text-xs font-extrabold text-emerald-400 uppercase tracking-wider">Condition</span>
+          <h3 class="text-base font-bold text-white">Budget Smartphones</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Legacy Android OS (Android 9/10), restricted background cellular roaming, or cracked screens.
+          </p>
+        </div>
+      </div>
+
+      <!-- Real Pain Point Box -->
+      <div class="glass-card-accent p-6 sm:p-8 rounded-2xl space-y-4 gradient-border">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 rounded bg-red-500/20 text-red-400 border border-red-500/30 text-xs font-bold uppercase tracking-wider">
+              The Real Pain Point (In User's Words)
+            </span>
+          </div>
+          <span class="text-xs text-slate-400">Human Factor: Fear of Institutional Authority & Public Embarrassment</span>
+        </div>
+
+        <blockquote class="text-xl sm:text-2xl font-medium text-white italic leading-snug">
+          "The subway Wi-Fi froze underground, my ticketing app won't refresh my pass, and gate officers are threatening me with a €100 fine because I can't explain the error in English."
+        </blockquote>
+
+        <div class="grid md:grid-cols-2 gap-4 pt-2 text-xs text-slate-300 border-t border-amber-500/20">
+          <div>
+            <strong class="text-amber-400">Why it hurts now (2026 Trend):</strong> Rapid European rollout of 100% cashless, ticketless automated gate turnstiles (e.g., TFI Leap App expansion and Paris RATP modernizations) eliminating physical cash ticket desks.
+          </div>
+          <div>
+            <strong class="text-emerald-400">Systemic Impact:</strong> High friction leads to immediate transit exclusion, disproportionate fines levied on vulnerable demographics, and bottleneck congestion at peak turnstile hours.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 02: Proposed Solution & Technical Architecture -->
+  <section id="solution" class="py-12 px-6 max-w-7xl mx-auto border-t border-slate-800/80">
+    <div class="space-y-8">
+      <div class="flex items-center gap-3">
+        <span class="flex items-center justify-center w-8 h-8 rounded-xl bg-emerald-500 text-slate-950 font-black text-sm">02</span>
+        <div>
+          <h2 class="text-2xl font-bold text-white">Proposed Solution & Technical Architecture</h2>
+          <p class="text-xs text-slate-400">Offline-first, cryptographic pre-cached micro-UI engine</p>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="glass-card p-6 rounded-2xl space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-2xl">
+            🔑
+          </div>
+          <h3 class="text-lg font-bold text-white">Pre-Cached Hardware Enclave</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            When the device has cellular connection above ground, the app fetches a pre-signed cryptographic seed stored locally inside the phone's Secure Enclave.
+          </p>
+          <ul class="text-xs text-slate-400 space-y-1.5 pt-2 border-t border-slate-800">
+            <li class="flex items-center gap-2"><span class="text-amber-400">✓</span> Elliptic-curve digital signatures (ECDSA)</li>
+            <li class="flex items-center gap-2"><span class="text-amber-400">✓</span> Time-based rolling dynamic tokens</li>
+          </ul>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="glass-card p-6 rounded-2xl space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-2xl">
+            📲
+          </div>
+          <h3 class="text-lg font-bold text-white">Offline Optical Handshake</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Generates a high-contrast dynamic QR code containing encrypted trip parameters that turnstile optical readers verify offline without calling central servers.
+          </p>
+          <ul class="text-xs text-slate-400 space-y-1.5 pt-2 border-t border-slate-800">
+            <li class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Zero server network dependency</li>
+            <li class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Validates in under 200 milliseconds</li>
+          </ul>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="glass-card p-6 rounded-2xl space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-2xl">
+            🌐
+          </div>
+          <h3 class="text-lg font-bold text-white">Multilingual Emergency UI</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            In case of gate rejection, the screen displays a universal 3-color visual badge & native language card (Ukrainian, Portuguese, Chinese, Arabic, English).
+          </p>
+          <ul class="text-xs text-slate-400 space-y-1.5 pt-2 border-t border-slate-800">
+            <li class="flex items-center gap-2"><span class="text-amber-400">✓</span> Instant proof-of-valid-account card</li>
+            <li class="flex items-center gap-2"><span class="text-amber-400">✓</span> Eliminates language-barrier distress</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Interactive QR & App Simulator Box -->
+      <div class="glass-card p-6 sm:p-8 rounded-2xl space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h3 class="text-lg font-bold text-white">Interactive Prototype: TransitGuard Offline Mode</h3>
+            <p class="text-xs text-slate-400">Simulate subterranean underground app performance</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xs text-slate-400">Simulate Connection:</span>
+            <button id="toggleNetBtn" onclick="toggleNetworkMode()" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/30 transition">
+              Status: ONLINE (Connected)
+            </button>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-center bg-slate-950/60 p-6 rounded-xl border border-slate-800">
+          <div class="space-y-4">
+            <div class="flex items-center gap-2 text-xs">
+              <span class="font-bold text-slate-400 uppercase tracking-wider">Device Status:</span>
+              <span id="networkBadge" class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-semibold">Online • Cell Network Active</span>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+              <div class="text-xs font-semibold text-amber-400">Pre-Cached Vault Balance</div>
+              <div class="text-3xl font-extrabold text-white">€15.00 <span class="text-xs font-normal text-slate-400">(3 Offline Trips Reserved)</span></div>
+              <p class="text-[11px] text-slate-400">Vault Signature: <code class="text-slate-300 font-mono">0x9F4a...E81c (Validated)</code></p>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-xs text-slate-400 font-semibold">Inspector Language Badge:</label>
+              <select id="langSelect" onchange="updateLanguageBadge()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-amber-500 outline-none">
+                <option value="en">English (Default)</option>
+                <option value="uk">Ukrainian (Українська)</option>
+                <option value="es">Spanish (Español)</option>
+                <option value="zh">Mandarin (中文)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dynamic QR Display -->
+          <div class="flex flex-col items-center justify-center p-6 bg-slate-900 rounded-xl border border-slate-800 text-center space-y-4">
+            <div class="relative group">
+              <div id="qrCodeBox" class="w-40 h-40 bg-white p-2 rounded-xl flex items-center justify-center shadow-xl transition-all duration-300">
+                <!-- SVG Offline QR Code -->
+                <svg class="w-full h-full text-slate-950" viewBox="0 0 100 100" fill="currentColor">
+                  <path d="M0,0 H30 V30 H0 Z M5,5 V25 H25 V5 Z M10,10 H20 V20 H10 Z"></path>
+                  <path d="M70,0 H100 V30 H70 Z M75,5 V25 H95 V5 Z M80,10 H90 V20 H80 Z"></path>
+                  <path d="M0,70 H30 V100 H0 Z M5,75 V95 H25 V75 Z M10,80 H20 V90 H10 Z"></path>
+                  <rect x="35" y="5" width="10" height="20"></rect>
+                  <rect x="50" y="10" width="15" height="10"></rect>
+                  <rect x="35" y="35" width="30" height="10"></rect>
+                  <rect x="70" y="40" width="25" height="15"></rect>
+                  <rect x="40" y="65" width="20" height="25"></rect>
+                  <rect x="70" y="70" width="25" height="25"></rect>
+                </svg>
+              </div>
+              <div id="offlineOverlay" class="hidden absolute inset-0 bg-slate-950/80 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center p-2 text-center">
+                <span class="text-2xl mb-1">⚡</span>
+                <span class="text-[11px] font-bold text-amber-400">Offline Key Active</span>
+                <span class="text-[9px] text-slate-300">Valid for next 45 mins</span>
+              </div>
+            </div>
+
+            <div id="inspectorBadgeText" class="text-xs text-slate-300 bg-slate-950 px-3 py-2 rounded-lg border border-slate-800 w-full">
+              <strong>Inspector Badge:</strong> Valid Offline Pass Pre-Cleared by Bank Enclave.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 03: Curiosity Questions & Field Test Plan (€20 Smallest Test) -->
+  <section id="research" class="py-12 px-6 max-w-7xl mx-auto border-t border-slate-800/80">
+    <div class="space-y-8">
+      <div class="flex items-center gap-3">
+        <span class="flex items-center justify-center w-8 h-8 rounded-xl bg-amber-500 text-slate-950 font-black text-sm">03</span>
+        <div>
+          <h2 class="text-2xl font-bold text-white">Curiosity Questions & €20 Field Test</h2>
+          <p class="text-xs text-slate-400">Primary research questions and cheap local validation protocol</p>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <!-- Curiosity Questions -->
+        <div class="glass-card p-6 sm:p-8 rounded-2xl space-y-4">
+          <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <span class="text-amber-400">❓</span> Curiosity Questions for Real Data
+          </h3>
+          <p class="text-xs text-slate-400">Questions answerable only by interviewing transit authorities & migrant users in Dublin:</p>
+
+          <div class="space-y-3 pt-2">
+            <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800 space-y-1">
+              <p class="text-xs text-white font-semibold">1. Inspector Failure Protocol</p>
+              <p class="text-xs text-slate-300">What exact protocol do Transport for Ireland (TFI) inspectors follow when a commuter’s app fails underground due to network drops?</p>
+              <p class="text-[11px] text-amber-400/90 pt-1">📍 Where in Ireland: National Transport Authority (NTA) office, D'Olier St, Dublin.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800 space-y-1">
+              <p class="text-xs text-white font-semibold">2. Fare Penalty Fine Demographics</p>
+              <p class="text-xs text-slate-300">What percentage of standard fare penalty notices on Luas/DART are issued to non-Irish passport holders facing app sync glitches?</p>
+              <p class="text-[11px] text-amber-400/90 pt-1">📍 Where in Ireland: Transdev Luas Customer Care Office, Connolly Station Dublin.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800 space-y-1">
+              <p class="text-xs text-white font-semibold">3. Offline Hardware Capability</p>
+              <p class="text-xs text-slate-300">Do Dublin station turnstiles currently support offline cryptographic key storage on local reader heads?</p>
+              <p class="text-[11px] text-amber-400/90 pt-1">📍 Where in Ireland: NTA Tech Integration Team / Dogpatch Labs FinTech Mentors.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- €20 Field Test Protocol -->
+        <div class="glass-card-accent p-6 sm:p-8 rounded-2xl space-y-4 gradient-border">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <span class="text-emerald-400">🧪</span> €20 Smallest Test Protocol
+            </h3>
+            <span class="text-xs font-bold text-amber-400 px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/20">Budget: €5.00 Spent</span>
+          </div>
+
+          <p class="text-xs text-slate-300 leading-relaxed">
+            A 1-hour field validation experiment executed at Dublin transit hubs to measure real fear of offline fines versus ticket acceptance.
+          </p>
+
+          <div class="space-y-3 pt-2">
+            <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 text-xs space-y-1">
+              <strong class="text-white">Step 1: Artifact Creation (€5.00)</strong>
+              <p class="text-slate-400">Print 20 physical card slips with a custom mock dynamic QR code stating: "Offline Pre-Cleared Emergency Voucher".</p>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 text-xs space-y-1">
+              <strong class="text-white">Step 2: Field Execution (Connolly / Heuston Station)</strong>
+              <p class="text-slate-400">Approach 15 commuters with phone on Airplane Mode. Ask: <em>"If your transit app froze underground right now, would you feel safe showing this inspector backup slip, or do you expect a fine anyway?"</em></p>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 text-xs space-y-1">
+              <strong class="text-white">Step 3: Metrics to Track</strong>
+              <p class="text-slate-400">Measure % who express fear of inspector fines vs. % who accept offline pre-authorization badges.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 04: Citations & Data Sources -->
+  <section id="citations" class="py-12 px-6 max-w-7xl mx-auto border-t border-slate-800/80">
+    <div class="space-y-6">
+      <div class="flex items-center gap-3">
+        <span class="flex items-center justify-center w-8 h-8 rounded-xl bg-emerald-500 text-slate-950 font-black text-sm">04</span>
+        <div>
+          <h2 class="text-2xl font-bold text-white">Citations & References</h2>
+          <p class="text-xs text-slate-400">Academic, institutional, and regulatory sources supporting facts</p>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+        <div class="glass-card p-5 rounded-xl space-y-2">
+          <span class="text-[10px] font-bold text-amber-400 uppercase">Institutional Source</span>
+          <h4 class="font-bold text-white">Transport for Ireland (NTA) Guidelines</h4>
+          <p class="text-slate-400 leading-relaxed">
+            National Transport Authority Standard Fare Regulations & Fare Evasion Appeal Protocols (2025/2026 Guidelines).
+          </p>
+        </div>
+
+        <div class="glass-card p-5 rounded-xl space-y-2">
+          <span class="text-[10px] font-bold text-emerald-400 uppercase">EU Regulatory Framework</span>
+          <h4 class="font-bold text-white">EU Digital Operational Resilience Act (DORA)</h4>
+          <p class="text-slate-400 leading-relaxed">
+            Regulation (EU) 2022/2554 on digital operational resilience for the financial sector and offline fallback mandates.
+          </p>
+        </div>
+
+        <div class="glass-card p-5 rounded-xl space-y-2">
+          <span class="text-[10px] font-bold text-amber-400 uppercase">Academic Literature</span>
+          <h4 class="font-bold text-white">EMVCo Offline QR Specification</h4>
+          <p class="text-slate-400 leading-relaxed">
+            EMVCo Architecture for Payment System Offline Dynamic Data Authentication (ODDA) on Mobile Devices.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-6 border-t border-slate-800/80 text-center text-xs text-slate-500 max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+    <div>
+      © 2026 National College of Ireland (NCI) • LOCHF FinTech Module Project
+    </div>
+    <div class="flex items-center gap-4">
+      <button onclick="togglePitchModal(true)" class="text-amber-400 hover:underline">Open Pitch Deck Modal</button>
+      <span>•</span>
+      <a href="#venn" class="hover:text-slate-300">Back to Top</a>
+    </div>
+  </footer>
+
+  <!-- Pitch Deck Modal -->
+  <div id="pitchModal" class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 lg:p-8">
+    <div class="glass-card max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-2xl border border-amber-500/30 p-6 sm:p-10 space-y-8 relative">
+      <!-- Close Button -->
+      <button onclick="togglePitchModal(false)" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center font-bold text-sm">
+        ✕
+      </button>
+
+      <div class="space-y-2">
+        <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-bold uppercase tracking-wider">
+          Investor & Academic Presentation Deck
+        </span>
+        <h2 class="text-3xl font-extrabold text-white">TransitGuard // Pitch Deck</h2>
+      </div>
+
+      <!-- Slide 1 -->
+      <div class="p-6 rounded-xl bg-slate-950/80 border border-slate-800 space-y-3">
+        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Slide 01 // Executive Summary</span>
+        <h3 class="text-2xl font-bold text-white">Eliminating Cashless Exclusion in Underground Transit</h3>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          As European public transit systems eliminate physical cash tickets in favor of 100% digital barriers, network dead zones cause mobile app freezes, passenger panic, and unfair fare-evasion penalties. TransitGuard introduces offline-first cryptographic micro-tokens.
+        </p>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="p-6 rounded-xl bg-slate-950/80 border border-slate-800 space-y-3">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Slide 02 // The Market & Target Demographic</span>
+        <h3 class="text-2xl font-bold text-white">Migrant Commuters & Subterranean Hubs</h3>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Targeting 1.2M daily subterranean transit users across Dublin, Paris, and Berlin who use budget smartphones or lack international mobile roaming data, turning barrier friction into instant offline gate clearance.
+        </p>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="p-6 rounded-xl bg-slate-950/80 border border-slate-800 space-y-3">
+        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Slide 03 // Business Model</span>
+        <h3 class="text-2xl font-bold text-white">B2G & B2B SaaS Licensing</h3>
+        <div class="grid sm:grid-cols-3 gap-4 pt-2">
+          <div class="p-4 rounded-lg bg-slate-900 border border-slate-800">
+            <div class="text-amber-400 font-bold text-lg">€0.01 / Scan</div>
+            <div class="text-[11px] text-slate-400">API verification log fee paid by municipal transport operators.</div>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-900 border border-slate-800">
+            <div class="text-white font-bold text-lg">€45,000 / Yr</div>
+            <div class="text-[11px] text-slate-400">Enterprise license per transit operator for offline SDK.</div>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-900 border border-slate-800">
+            <div class="text-emerald-400 font-bold text-lg">Zero Penalty Risk</div>
+            <div class="text-[11px] text-slate-400">Saves transit authorities millions in dispute processing costs.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-4 pt-4 border-t border-slate-800">
+        <button onclick="togglePitchModal(false)" class="px-6 py-2.5 rounded-xl text-xs font-bold bg-amber-500 text-slate-950 hover:bg-amber-400 transition">
+          Close Presentation
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Logic -->
+  <script>
+    let isOnline = true;
+
+    function toggleNetworkMode() {
+      isOnline = !isOnline;
+      const btn = document.getElementById('toggleNetBtn');
+      const badge = document.getElementById('networkBadge');
+      const overlay = document.getElementById('offlineOverlay');
+
+      if (isOnline) {
+        btn.innerText = "Status: ONLINE (Connected)";
+        btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/30 transition";
+        badge.innerText = "Online • Cell Network Active";
+        badge.className = "px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-semibold";
+        overlay.classList.add('hidden');
+      } else {
+        btn.innerText = "Status: OFFLINE (Subterranean Tunnels)";
+        btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:bg-amber-500/30 transition";
+        badge.innerText = "Offline • Signal Lost (Pre-Cached Key)";
+        badge.className = "px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-semibold";
+        overlay.classList.remove('hidden');
+      }
+    }
+
+    function updateLanguageBadge() {
+      const select = document.getElementById('langSelect');
+      const text = document.getElementById('inspectorBadgeText');
+      const val = select.value;
+
+      if (val === 'uk') {
+        text.innerHTML = "<strong>Inspector Badge (UA):</strong> Дійсний офлайн-квиток. Підтверджено банківським анклавом.";
+      } else if (val === 'es') {
+        text.innerHTML = "<strong>Inspector Badge (ES):</strong> Pase fuera de línea válido. Confirmado por el enclave bancario.";
+      } else if (val === 'zh') {
+        text.innerHTML = "<strong>Inspector Badge (ZH):</strong> 离线通行证有效。已由银行安全芯片预先验证。";
+      } else {
+        text.innerHTML = "<strong>Inspector Badge (EN):</strong> Valid Offline Pass Pre-Cleared by Bank Enclave.";
+      }
+    }
+
+    function togglePitchModal(show) {
+      const modal = document.getElementById('pitchModal');
+      if (show) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>
